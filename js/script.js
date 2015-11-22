@@ -565,9 +565,7 @@ $('.wpb-mobile-menu').slicknav({
  * Image lazy loading
  */
 $(function() {
-	$("img.lazy").lazyload({
-		effect : "fadeIn"
-	});
+	$("img.lazy").lazyload();
 });
 
 
