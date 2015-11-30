@@ -19,7 +19,7 @@ gulp.task('styles', function () {
     return gulp.src([
         'asset/css/bootstrap.min.css',
         'css/font-awesome.min.css',
-        // 'css/slicknav.css',
+        'css/slicknav.css',
         'css/style.css',
         'css/responsive.css',
         'css/animate.css',
