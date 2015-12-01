@@ -565,7 +565,7 @@ $('.wpb-mobile-menu').slicknav({
  * Image lazy loading
  */
 $(function() {
-	$("img.lazy").lazyload({threshold : 800});
+	$("img.lazy").lazyload({threshold : 200});
 });
 
 
