@@ -6,8 +6,8 @@
 // load plugins
 var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
+    uncss = require('gulp-uncss'),
     uglify = require('gulp-uglify'),
-    addsrc = require('gulp-add-src'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     rename = require('gulp-rename'),
