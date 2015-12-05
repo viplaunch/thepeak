@@ -11,11 +11,12 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     rename = require('gulp-rename'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    sitemap = require('gulp-sitemap');
 
 
 // styles:
-gulp.task('styles', function () {
+gulp.task('style-clean', function () {
     return gulp.src([
         'asset/css/bootstrap.min.css',
         'css/font-awesome.min.css',
@@ -25,12 +26,21 @@ gulp.task('styles', function () {
         'css/animate.css',
         'css/colors/jade.css'])
         .pipe(concat('viplaunch.css'))
-        .pipe(minifycss())
+        .pipe(uncss({
+            html: ['**/index.html', 'http://thepeak.viplaunch.sg']
+        }))
         .pipe(rename({
             extname: '.min.css'
         }))
         .pipe(gulp.dest('css'))
-        .pipe(notify({message: 'styles task complete'}));
+        .pipe(notify({message: 'style-clean task complete'}));
+});
+
+gulp.task('style-minify', function () {
+    return gulp.src(['css/viplaunch.min.css'])
+        .pipe(minifycss())
+        .pipe(gulp.dest('css'))
+        .pipe(notify({message: 'style-minify task complete'}));
 });
 
 // scripts:
@@ -63,3 +73,15 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('js'))
         .pipe(notify({message: 'scripts task complete'}));
 });
+
+// sitemap
+gulp.task('sitemap', function () {
+    gulp.src('**/index.html')
+        .pipe(sitemap({
+            siteUrl: 'http://thepeak.viplaunch.sg',
+            changefeq: 'daily'
+        }))
+        .pipe(gulp.dest('./'))
+        .pipe(notify({message: 'sitemap task complete'}));;
+});
+
